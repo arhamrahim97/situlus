@@ -404,32 +404,34 @@
 								<textarea class="form-control" style="width: 95%; float: right;" name="" cols="30" rows="10" id="alamatPegawai2" disabled></textarea>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-6 col-sm-12">
-								<div class="form-group">
-									<div class="row">
-										<div class="col-lg-3 col-sm-12">
-											<label>Username:</label>
+						<?php if ($this->session->userdata('id') == 1) : ?>
+							<div class="row">
+								<div class="col-lg-6 col-sm-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-3 col-sm-12">
+												<label>Username:</label>
+											</div>
+											<div class="col-lg-9 col-sm-12">
+												<input type="text" class="form-control " id="usernamePegawai2" value="" disabled>
+											</div>
 										</div>
-										<div class="col-lg-9 col-sm-12">
-											<input type="text" class="form-control " id="usernamePegawai2" value="" disabled>
+									</div>
+								</div>
+								<div class="col-lg-6 col-sm-12">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-3 col-sm-12">
+												<label>Password:</label>
+											</div>
+											<div class="col-lg-9 col-sm-12">
+												<input type="text" class="form-control " id="passwordPegawai2" value="" disabled>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6 col-sm-12">
-								<div class="form-group">
-									<div class="row">
-										<div class="col-lg-3 col-sm-12">
-											<label>Password:</label>
-										</div>
-										<div class="col-lg-9 col-sm-12">
-											<input type="text" class="form-control " id="passwordPegawai2" value="" disabled>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<?php endif ?>
 						<div class="row">
 							<div class="col-lg-6 col-sm-12">
 								<div class="form-group">
@@ -440,7 +442,9 @@
 										<div class="col-lg-9 col-sm-12">
 											<div id="status-akun-aktif" style="display: none;">
 												<div class="badge badge-success mr-3" data-toggle="tooltip" data-placement="left" title="Aktif">Aktif</div>
-												<button type="button" id="btn-nonaktifkan" class="btn btn-sm btn-danger btn-nonaktifkan" href="#" style="display: none">Non-aktifkan</button>
+												<?php if ($this->session->userdata('id') == 1) : ?>
+													<button type="button" id="btn-nonaktifkan" class="btn btn-sm btn-danger btn-nonaktifkan" href="#" style="display: none">Non-aktifkan</button>
+												<?php endif; ?>
 											</div>
 											<div id="status-akun-nonaktif" style="display: none;">
 												<div class="badge badge-danger mr-3" data-toggle="tooltip" data-placement="left" title="Tidak Aktif">Tidak Aktif</div>
@@ -480,8 +484,10 @@
 							<div class="col">
 								<div class="float-right" id="btn-ubah-data-pegawai2">
 									<button type="button" class="btn btn-sm btn-danger mr-1 btn-ubahFoto" data-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
-									<button name="" id="btn-ubah-profil" class="btn btn-sm btn-primary btn-ubahFoto" href="#" role="button"><i class="fas fa-image"></i> Ubah Foto Profil</button>
-									<button name="" id="btn-ubah-data-pegawai" class="btn btn-sm btn-primary btn-ubahFoto btn-ubah-data-pegawai" href="#" role="button"><i class="fas fa-edit"></i> Ubah Data</button>
+									<?php if ($this->session->userdata('id') == 1) : ?>
+										<button name="" id="btn-ubah-profil" class="btn btn-sm btn-primary btn-ubahFoto" href="#" role="button"><i class="fas fa-image"></i> Ubah Foto Profil</button>
+										<button name="" id="btn-ubah-data-pegawai" class="btn btn-sm btn-primary btn-ubahFoto btn-ubah-data-pegawai" href="#" role="button"><i class="fas fa-edit"></i> Ubah Data</button>
+									<?php endif; ?>
 								</div>
 								<div class="float-right btn-perbarui-pegawai" id="' . $detail->id . '" style="display:none">
 									<button type="button" class="btn btn-sm btn-danger mr-1" data-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
@@ -537,7 +543,7 @@
 		// refreshTable()
 		dataKasir()
 		provinsi()
-// 		grade()
+		// 		grade()
 		$("select").select2();
 		bsCustomFileInput.init();
 
@@ -647,18 +653,18 @@
 		})
 	}
 
-// 	function grade() {
-// 		$.ajax({
-// 			type: 'POST',
-// 			url: `<?= base_url('get-grade-detail') ?>`,
-// 			success: function(data) {
-// 				$('#gradePegawai2').html(data)
-// 			},
-// 			error: function(data) {
-// 				console.log(data);
-// 			}
-// 		})
-// 	}
+	// 	function grade() {
+	// 		$.ajax({
+	// 			type: 'POST',
+	// 			url: `<?= base_url('get-grade-detail') ?>`,
+	// 			success: function(data) {
+	// 				$('#gradePegawai2').html(data)
+	// 			},
+	// 			error: function(data) {
+	// 				console.log(data);
+	// 			}
+	// 		})
+	// 	}
 
 	function kabupaten(id) {
 		$.ajax({
@@ -771,9 +777,9 @@
 		$('#usernamePegawai').removeClass('is-invalid')
 	})
 
-// 	$('#gradePegawai').change(function() {
-// 		$('#gradePegawai').removeClass('is-invalid')
-// 	})
+	// 	$('#gradePegawai').change(function() {
+	// 		$('#gradePegawai').removeClass('is-invalid')
+	// 	})
 
 	$('#passwordPegawai').keydown(function() {
 		$('#passwordPegawai').removeClass('is-invalid')
@@ -865,22 +871,22 @@
 								var fd = new FormData()
 								fd.append('nama', $('#namaPegawai').val())
 								fd.append('tempat_lahir', $('#tempatPegawai').val())
-								if ($('#tanggalPegawai').val() !== ''){
-								    fd.append('tgl_lahir', $('#tanggalPegawai').val())
+								if ($('#tanggalPegawai').val() !== '') {
+									fd.append('tgl_lahir', $('#tanggalPegawai').val())
 								}
 								fd.append('email', $('#emailPegawai').val())
 								fd.append('telepon', $('#teleponPegawai').val())
-								if ($('#provinsiPegawai').val() !== ''){
-								    fd.append('provinsi', $('#provinsiPegawai').val())
+								if ($('#provinsiPegawai').val() !== '') {
+									fd.append('provinsi', $('#provinsiPegawai').val())
 								}
-								if ($('#kabupatenPegawai').val() !== ''){
-								    fd.append('kabupaten', $('#kabupatenPegawai').val())
+								if ($('#kabupatenPegawai').val() !== '') {
+									fd.append('kabupaten', $('#kabupatenPegawai').val())
 								}
-								if ($('#kecamatanPegawai').val() !== ''){
-								    fd.append('kecamatan', $('#kecamatanPegawai').val())
+								if ($('#kecamatanPegawai').val() !== '') {
+									fd.append('kecamatan', $('#kecamatanPegawai').val())
 								}
-								if ($('#kelurahanPegawai').val() !== ''){
-								    fd.append('kelurahan', $('#kelurahanPegawai').val())
+								if ($('#kelurahanPegawai').val() !== '') {
+									fd.append('kelurahan', $('#kelurahanPegawai').val())
 								}
 								fd.append('alamat', $('#alamatPegawai').val())
 								fd.append('username', $('#usernamePegawai').val())
@@ -979,7 +985,7 @@
 
 	function disabled() {
 		$('#namaPegawai2').prop('disabled', true);
-// 		$('#nipPegawai2').prop('disabled', true);
+		// 		$('#nipPegawai2').prop('disabled', true);
 		$('#tempatPegawai2').prop('disabled', true);
 		$('#tanggalPegawai2').prop('disabled', true);
 		$('#emailPegawai2').prop('disabled', true);
@@ -991,7 +997,7 @@
 		$('#alamatPegawai2').prop('disabled', true);
 		$('#usernamePegawai2').prop('disabled', true);
 		$('#passwordPegawai2').prop('disabled', true);
-// 		$('#gradePegawai2').prop('disabled', true);
+		// 		$('#gradePegawai2').prop('disabled', true);
 		$('.btn-ubahFoto').show()
 		$('.btn-perbarui-pegawai').hide()
 		$('#btn-ubah-data-pegawai').show()
@@ -1005,7 +1011,7 @@
 
 	$('#btn-ubah-data-pegawai').click(function() {
 		$('#namaPegawai2').removeAttr('disabled')
-// 		$('#nipPegawai2').removeAttr('disabled')
+		// 		$('#nipPegawai2').removeAttr('disabled')
 		$('#tempatPegawai2').removeAttr('disabled')
 		$('#tanggalPegawai2').removeAttr('disabled')
 		$('#emailPegawai2').removeAttr('disabled')
@@ -1017,7 +1023,7 @@
 		$('#alamatPegawai2').removeAttr('disabled')
 		$('#usernamePegawai2').removeAttr('disabled')
 		$('#passwordPegawai2').removeAttr('disabled')
-// 		$('#gradePegawai2').removeAttr('disabled')
+		// 		$('#gradePegawai2').removeAttr('disabled')
 		$('.btn-ubahFoto').hide()
 		$('.btn-perbarui-pegawai').show()
 		$('#btn-ubah-data-pegawai').hide()
@@ -1222,33 +1228,33 @@
 							var fd = new FormData()
 							fd.append('id', $('#idPegawai2').val())
 							fd.append('nama', $('#namaPegawai2').val())
-				// 			fd.append('nip', $('#nipPegawai2').val())
+							// 			fd.append('nip', $('#nipPegawai2').val())
 							fd.append('tempat_lahir', $('#tempatPegawai2').val())
-							if ($('#tanggalPegawai2').val() !== ''){
-							    fd.append('tgl_lahir', $('#tanggalPegawai2').val())
+							if ($('#tanggalPegawai2').val() !== '') {
+								fd.append('tgl_lahir', $('#tanggalPegawai2').val())
 							}
 							fd.append('email', $('#emailPegawai2').val())
 							fd.append('telepon', $('#teleponPegawai2').val())
-							if ($('#provinsiPegawai2').val() !== ''){
-							    fd.append('provinsi', $('#provinsiPegawai2').val())
+							if ($('#provinsiPegawai2').val() !== '') {
+								fd.append('provinsi', $('#provinsiPegawai2').val())
 							}
-							if ($('#kabupatenPegawai2').val() !== ''){
-							    fd.append('kabupaten', $('#kabupatenPegawai2').val())
+							if ($('#kabupatenPegawai2').val() !== '') {
+								fd.append('kabupaten', $('#kabupatenPegawai2').val())
 							}
-							if ($('#kecamatanPegawai2').val() !== ''){
-							    fd.append('kecamatan', $('#kecamatanPegawai2').val())
+							if ($('#kecamatanPegawai2').val() !== '') {
+								fd.append('kecamatan', $('#kecamatanPegawai2').val())
 							}
-							if ($('#kelurahanPegawai2').val() !== ''){
-							    fd.append('kelurahan', $('#kelurahanPegawai2').val())
+							if ($('#kelurahanPegawai2').val() !== '') {
+								fd.append('kelurahan', $('#kelurahanPegawai2').val())
 							}
-				// 			fd.append('provinsi', $('#provinsiPegawai2').val())
-				// 			fd.append('kabupaten', $('#kabupatenPegawai2').val())
-				// 			fd.append('kecamatan', $('#kecamatanPegawai2').val())
-				// 			fd.append('kelurahan', $('#kelurahanPegawai2').val())
+							// 			fd.append('provinsi', $('#provinsiPegawai2').val())
+							// 			fd.append('kabupaten', $('#kabupatenPegawai2').val())
+							// 			fd.append('kecamatan', $('#kecamatanPegawai2').val())
+							// 			fd.append('kelurahan', $('#kelurahanPegawai2').val())
 							fd.append('alamat', $('#alamatPegawai2').val())
 							fd.append('username', $('#usernamePegawai2').val())
 							fd.append('password', $('#passwordPegawai2').val())
-				// 			fd.append('grade', $('#gradePegawai2').val())
+							// 			fd.append('grade', $('#gradePegawai2').val())
 							$.ajax({
 								type: 'post',
 								url: `<?= base_url('ubah-data-kasir') ?>`,
