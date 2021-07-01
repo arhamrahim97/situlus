@@ -80,7 +80,7 @@ class C_pegawai_peminjaman extends CI_Controller
 					</li>
 					<li class="list-group-item px-1 py-1">
 					<p style="display: inline;">Surat Pernyataan :</p>
-					<a style="float: right" class="btn btn-sm btn-primary btn-download-sp" id="' . $detail->id . '" href="' . base_url("peminjaman-download-sp2/$detail->surat_pernyataan") . '"><i class="fas fa-download"></i> Download</a>					
+					<a style="float: right" target="_blank" class="btn btn-sm btn-primary btn-download-sp" id="' . $detail->id . '" href="' . base_url("/uploads/pdf_word/$detail->surat_pernyataan")  . '"><i class="fas fa-download"></i> Download</a>					
 				</li>
 					<li class="list-group-item px-1 py-1">
 						<p style="display: inline;">Status Pinjaman :</p>
