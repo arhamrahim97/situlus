@@ -450,7 +450,7 @@
 				$('#modal-peminjaman').modal('show')
 				$('#modal-peminjaman').appendTo('body')
 				$("#table2").DataTable({
-				    "autoWidth": false,
+					"autoWidth": false,
 					"paging": false,
 					"order": [
 						[0, "asc"]
