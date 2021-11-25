@@ -121,7 +121,7 @@ class C_admin_peminjaman extends CI_Controller
 					</li>
 					<li class="list-group-item px-1 py-1">
 						<p style="display: inline;">Surat Pernyataan :</p>
-						<a style="float: right" class="btn btn-sm btn-primary btn-download-sp" id="' . $d->id . '" href="' . (base_url("/uploads/pdf_word/$d->surat_pernyataan")) . '"><i class="fas fa-download"></i> Download</a>
+						<a style="float: right" class="btn btn-sm btn-primary btn-download-sp" id="' . $d->id . '" href="' . base_url("peminjaman-download-sp/$d->surat_pernyataan") . '"><i class="fas fa-download"></i> Download</a>
 					</li>
 					<li class="list-group-item px-1 py-1">
 						<button style="float: right" class="btn btn-sm btn-primary mt-3 btn-konfirmasi-pinjaman" id="' . $d->id . '" ><i class="fas fa-question-circle"></i> Konfirmasi</button>
@@ -132,18 +132,12 @@ class C_admin_peminjaman extends CI_Controller
 		echo $output;
 	}
 
-	public function spPeminjaman()
+	public function spPeminjaman($filename = NULL)
 	{
-// 		$this->load->helper('download');
-// 		$file =  $this->uri->segment(2);
-// 		$data = file_get_contents(base_url('/uploads/pdf_word/' . $file));
-// 		force_download($filename, $data);
-
-// $this->load->helper('download');
-		$file =  $this->uri->segment(2);		
-		echo 'test';
-// 		$data = file_get_contents(base_url('/uploads/pdf_word/' . $file));		
-// 		force_download(NULL, $data);
+		$this->load->helper('download');
+		$file =  $this->uri->segment(2);
+		$data = file_get_contents(base_url('/uploads/pdf_word/' . $file));
+		force_download($filename, $data);
 	}
 
 
@@ -209,7 +203,7 @@ class C_admin_peminjaman extends CI_Controller
 				</li>
 				<li class="list-group-item px-1 py-1">
 					<p style="display: inline;">Surat Pernyataan :</p>
-					<a style="float: right" target="_blank" class="btn btn-sm btn-primary btn-download-sp" id="' . $detail->id . '" href="' . base_url("/uploads/pdf_word/$detail->surat_pernyataan") . '"><i class="fas fa-download"></i> Download</a>					
+					<a style="float: right" class="btn btn-sm btn-primary btn-download-sp" id="' . $detail->id . '" href="' . base_url("peminjaman-download-sp/$detail->surat_pernyataan") . '"><i class="fas fa-download"></i> Download</a>					
 				</li>
 				<li class="list-group-item px-1 py-1">
 					<p style="display: inline;">Status Pinjaman :</p>
